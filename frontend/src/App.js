@@ -1,13 +1,16 @@
-import { Layout } from 'layout/Layout'
+import { Routes, Route } from 'react-router-dom'
 import HomePage from 'screens/Home/Home'
+import ProductDetails from 'screens/ProductDetails/ProductDetails'
+import { Layout } from 'layout/Layout'
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Layout>
-        <HomePage />
-      </Layout>
-    </>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
+    </Layout>
   )
 }
 

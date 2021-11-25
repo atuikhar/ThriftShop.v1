@@ -16,6 +16,7 @@ import {
 } from '@mui/icons-material'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Search, SearchIconWrapper, StyledInputBase } from './HeaderStyles'
+import { Link } from 'react-router-dom'
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -58,8 +59,16 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/profile">
+          <Typography color="#1f2430">Profile</Typography>
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/account">
+          <Typography color="#1f2430">Account</Typography>
+        </Link>
+      </MenuItem>
     </Menu>
   )
 
@@ -83,10 +92,14 @@ export default function NavBar() {
       <MenuItem>
         <IconButton size="large" aria-label="Cart Items" color="inherit">
           <Badge badgeContent={4} color="error">
-            <FaShoppingCart />
+            <Link to="/cart">
+              <FaShoppingCart color="#1a1f29" />
+            </Link>
           </Badge>
         </IconButton>
-        <p>Cart</p>
+        <Link to="/cart">
+          <Typography color="#1c212b">Cart</Typography>
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -98,7 +111,7 @@ export default function NavBar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>User</p>
       </MenuItem>
     </Menu>
   )
@@ -114,14 +127,17 @@ export default function NavBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           ></IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            ThriftShop
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              color="#f3f1ef"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              ThriftShop
+            </Typography>
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -135,7 +151,9 @@ export default function NavBar() {
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="Cart Items" color="inherit">
               <Badge badgeContent={4} color="error">
-                <FaShoppingCart />
+                <Link to="/cart">
+                  <FaShoppingCart color="#faf9f8" />
+                </Link>
               </Badge>
             </IconButton>
 

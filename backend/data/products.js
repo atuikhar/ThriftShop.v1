@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Air Jordan 1 Retro High',
     image: '/images/AirJordan.jpg',
     description:
@@ -13,10 +12,9 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'Adidas Red Tshirt',
 
-    image: '/images/Adidas Tshirt.jpg',
+    image: '/images/AdidasTshirt.jpg',
     description:
       'One, two, three. Its that easy. 3-Stripes in contrast colours tell the world you are rolling with a community of rebels and rule-breakers. Show them off on this t-shirt and keep your adidas style authentic. Soft cotton feels cosy from the first wear to the millionth.',
     brand: 'Adidas',
@@ -27,7 +25,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Nike Sneakers',
 
     image: '/images/Nike.jpg',
@@ -40,7 +37,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Vans Of The Wall',
 
     image: '/images/VansOfTheWall.jpg',
@@ -53,10 +49,9 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'Adidas ZX 500 Jordan',
 
-    image: '/images/Adidas ZX 500 Jordan.jpg',
+    image: '/images/AdidasZX500Jordan.jpg',
     description: 'Adidas ZX 500 Jordan Closeup',
     brand: 'Adidas',
     category: 'Footwear',
@@ -66,7 +61,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'SuperStar',
 
     image: '/images/SuperStar.jpg',
@@ -78,6 +72,6 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
-]
+];
 
-export default products
+export default products;
