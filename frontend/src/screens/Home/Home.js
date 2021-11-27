@@ -1,26 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { GridContainer } from './HomeStyles'
 import Product from 'components/Product/Product'
-import axios from 'axios'
+import { listProducts } from 'actions/productActions'
+
+import Loader from 'components/Loader/Loader'
+import Error from 'components/Error/Error'
+import { Container } from '@mui/material'
 
 const HomePage = () => {
-  const [products, setProducts] = useState([])
+  const dispatch = useDispatch()
+
+  const productList = useSelector((state) => state.productList)
+
+  const { loading, error, products } = productList
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products')
-
-      setProducts(data)
-    }
-    fetchProducts()
-  }, [])
+    dispatch(listProducts())
+  }, [dispatch])
 
   return (
-    <GridContainer>
-      {products.map((product) => (
-        <Product product={product} key={product._id} />
-      ))}
-    </GridContainer>
+    <Container>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Error error={error} />
+      ) : (
+        <GridContainer>
+          {products.map((product) => (
+            <Product product={product} key={product._id} />
+          ))}
+        </GridContainer>
+      )}
+    </Container>
   )
 }
 

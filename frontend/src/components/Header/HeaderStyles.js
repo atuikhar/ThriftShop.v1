@@ -1,5 +1,8 @@
 import { styled, alpha } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
+import { Typography } from '@mui/material'
+
+export const Text = styled(Typography)``
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -35,7 +38,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      width: '70ch',
     },
   },
 }))

@@ -1,6 +1,7 @@
 // import Footer from 'components/Footer/Footer'
 import Header from 'components/Header/Header'
 import { LayoutWrapper } from './LayoutStyles'
+import Footer from 'components/Footer/Footer'
 
 export const Layout = ({ children }) => {
   return (
@@ -9,7 +10,7 @@ export const Layout = ({ children }) => {
       <LayoutWrapper>
         <main>{children}</main>
       </LayoutWrapper>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }

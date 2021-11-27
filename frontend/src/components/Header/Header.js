@@ -3,7 +3,6 @@ import {
   AppBar,
   Box,
   Toolbar,
-  Typography,
   IconButton,
   Badge,
   MenuItem,
@@ -15,7 +14,12 @@ import {
   Search as SearchIcon,
 } from '@mui/icons-material'
 import { FaShoppingCart } from 'react-icons/fa'
-import { Search, SearchIconWrapper, StyledInputBase } from './HeaderStyles'
+import {
+  Search,
+  SearchIconWrapper,
+  StyledInputBase,
+  Text,
+} from './HeaderStyles'
 import { Link } from 'react-router-dom'
 
 export default function NavBar() {
@@ -61,12 +65,12 @@ export default function NavBar() {
     >
       <MenuItem onClick={handleMenuClose}>
         <Link to="/profile">
-          <Typography color="#1f2430">Profile</Typography>
+          <Text color="#1f2430">Profile</Text>
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link to="/account">
-          <Typography color="#1f2430">Account</Typography>
+          <Text color="#1f2430">Account</Text>
         </Link>
       </MenuItem>
     </Menu>
@@ -98,7 +102,7 @@ export default function NavBar() {
           </Badge>
         </IconButton>
         <Link to="/cart">
-          <Typography color="#1c212b">Cart</Typography>
+          <Text color="#1c212b">Cart</Text>
         </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -128,15 +132,15 @@ export default function NavBar() {
             sx={{ mr: 2 }}
           ></IconButton>
           <Link to="/">
-            <Typography
-              variant="h6"
+            <Text
+              variant="h5"
               noWrap
               component="div"
               color="#f3f1ef"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
               ThriftShop
-            </Typography>
+            </Text>
           </Link>
           <Search>
             <SearchIconWrapper>

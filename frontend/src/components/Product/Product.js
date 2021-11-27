@@ -10,6 +10,7 @@ export default function Product({ product }) {
       <Link to={`/product/${product._id}`} underline="none">
         <CardImage src={product.image} alt={product.name} />
         <Title>{product.name}</Title>
+        <Title>Rs. {product.price}</Title>
         <Rating value={product.rating} text={`${product.numReviews} reviews`} />
       </Link>
     </Wrapper>

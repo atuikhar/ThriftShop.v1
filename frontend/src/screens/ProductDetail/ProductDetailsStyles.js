@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import { Container } from '@mui/material'
 
-export const Wrapper = styled(Container)``
+export const Wrapper = styled(Container)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 export const CardImage = styled.img`
   border-radius: 5px;
