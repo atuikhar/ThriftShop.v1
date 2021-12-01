@@ -72,6 +72,30 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
+  {
+    name: 'NikeAir',
+
+    image: '/images/Jordan.jpg',
+    description: 'NikeJordan',
+    brand: 'Nike',
+    category: 'Footwear',
+    price: 29.99,
+    countInStock: 3,
+    rating: 4,
+    numReviews: 12,
+  },
+  {
+    name: 'Nike Collectors Edition',
+
+    image: '/images/NikeColl.jpg',
+    description: 'Collection',
+    brand: 'Nike',
+    category: 'Footwear',
+    price: 29.99,
+    countInStock: 4,
+    rating: 4,
+    numReviews: 12,
+  },
 ];
 
 export default products;

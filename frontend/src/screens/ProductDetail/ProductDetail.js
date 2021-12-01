@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Rating } from 'components/Rating/Rating'
-import Typography from '@mui/material/Typography'
 import { Wrapper, CardImage } from './ProductDetailsStyles'
-import Button from '@mui/material/Button'
-
-import Grid from '@mui/material/Grid'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableRow from '@mui/material/TableRow'
+import {
+  Typography,
+  Button,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  FormControl,
+  Box,
+  MenuItem,
+  Select,
+  InputLabel,
+} from '@mui/material'
 
 import { listProductDetails } from 'actions/productActions'
 
@@ -20,6 +26,9 @@ import Error from 'components/Error/Error'
 
 const ProductDetail = () => {
   const params = useParams()
+  const navigate = useNavigate()
+
+  const [qty, setQty] = useState(0)
 
   const dispatch = useDispatch()
 
@@ -30,6 +39,10 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(listProductDetails(params.id))
   }, [params, dispatch])
+
+  const addToCart = () => {
+    navigate(`/cart/${params.id}?qty=${qty}`)
+  }
 
   return (
     <Wrapper>
@@ -78,14 +91,49 @@ const ProductDetail = () => {
                     </TableCell>
                     <TableCell align="right">
                       <Typography variant="h5">
-                        {product.countInStock}
+                        {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                       </Typography>
                     </TableCell>
                   </TableRow>
+                  {product.countInStock > 0 && (
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        <Typography variant="h5">Qty :</Typography>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Box sx={{ minWidth: 50 }}>
+                          <FormControl>
+                            <InputLabel id="qtyCount">Qty</InputLabel>
+                            <Select
+                              labelId="qtyCount"
+                              id="qtySelect"
+                              value={qty}
+                              label="qty"
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  <MenuItem key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </MenuItem>
+                                )
+                              )}
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  )}
                   <TableRow>
                     <TableCell component="th" scope="row"></TableCell>
                     <TableCell align="right">
-                      <Button variant="contained">Add to Cart</Button>
+                      <Button
+                        onClick={addToCart}
+                        variant="contained"
+                        disabled={product.countInStock === 0}
+                      >
+                        Add to Cart
+                      </Button>
                     </TableCell>
                   </TableRow>
                 </TableBody>

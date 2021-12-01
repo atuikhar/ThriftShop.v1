@@ -4,9 +4,10 @@ const GlobalTheme = {
     main: 'Roboto, sans-serif',
   },
   colors: {
-    primary: 'rgba(25, 118, 210, 1)',
-    // background: '#0F1624',
+    primary: '#1976d2',
+    backgrounddark: '#0F1624',
     background: 'rgb(251, 250, 249, 1)',
+    light: '#fbfaf9',
   },
   breakpoints: {
     sm: 'screen and (max-width: 640px)',

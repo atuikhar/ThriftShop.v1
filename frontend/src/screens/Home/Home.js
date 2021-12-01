@@ -24,7 +24,7 @@ const HomePage = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Error error={error} />
+        <Error error={error} type="error" />
       ) : (
         <GridContainer>
           {products.map((product) => (
