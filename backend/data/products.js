@@ -8,8 +8,10 @@ const products = [
     category: 'Footwear',
     price: 89.99,
     countInStock: 10,
+    size: [30, 35, 40],
     rating: 4.5,
     numReviews: 12,
+    colorWay: ['Red', 'Green', 'Blue'],
   },
   {
     name: 'Adidas Red Tshirt',
@@ -21,42 +23,54 @@ const products = [
     category: 'Clothing',
     price: 599.99,
     countInStock: 7,
+    size: [30, 35, 40],
     rating: 4.0,
     numReviews: 8,
+    colorWay: ['Red', 'Green', 'Blue'],
   },
   {
     name: 'Nike Sneakers',
 
     image: '/images/Nike.jpg',
-    description: 'Nike Collection',
+    description:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     brand: 'Nike',
     category: 'Footwear',
     price: 929.99,
     countInStock: 5,
+    size: [30, 35, 40],
     rating: 3,
     numReviews: 12,
+    colorWay: ['Red', 'Green', 'Blue'],
   },
   {
     name: 'Vans Of The Wall',
 
     image: '/images/VansOfTheWall.jpg',
-    description: 'Vans Red T-Shirt',
+    description:
+      'Vans Red T-Shirt Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     brand: 'Vans Of The Wall',
     category: 'Clothing',
     price: 399.99,
     countInStock: 11,
+    size: [30, 35, 40],
     rating: 5,
     numReviews: 12,
+    colorWay: ['Red', 'Green', 'Blue'],
   },
   {
     name: 'Adidas ZX 500 Jordan',
 
     image: '/images/AdidasZX500Jordan.jpg',
-    description: 'Adidas ZX 500 Jordan Closeup',
+    description:
+      'Adidas ZX 500 Jordan Closeup Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     brand: 'Adidas',
     category: 'Footwear',
     price: 49.99,
     countInStock: 7,
+    size: [30, 35, 40],
+    colorWay: ['Red', 'Green', 'Blue'],
+
     rating: 3.5,
     numReviews: 10,
   },
@@ -64,11 +78,15 @@ const products = [
     name: 'SuperStar',
 
     image: '/images/SuperStar.jpg',
-    description: 'Adidas SuperStar',
+    description:
+      'Adidas SuperStar Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     brand: 'Adidas',
     category: 'Footwear',
     price: 29.99,
     countInStock: 0,
+    size: [30, 35, 40],
+    colorWay: ['Red', 'Green', 'Blue'],
+
     rating: 4,
     numReviews: 12,
   },
@@ -76,11 +94,15 @@ const products = [
     name: 'NikeAir',
 
     image: '/images/Jordan.jpg',
-    description: 'NikeJordan',
+    description:
+      'NikeJordan Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     brand: 'Nike',
     category: 'Footwear',
     price: 29.99,
     countInStock: 3,
+    size: [30, 35, 40],
+    colorWay: ['Red', 'Green', 'Blue'],
+
     rating: 4,
     numReviews: 12,
   },
@@ -88,11 +110,15 @@ const products = [
     name: 'Nike Collectors Edition',
 
     image: '/images/NikeColl.jpg',
-    description: 'Collection',
+    description:
+      'Collection Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     brand: 'Nike',
     category: 'Footwear',
     price: 29.99,
     countInStock: 4,
+    size: [30, 35, 40],
+    colorWay: ['Red', 'Green', 'Blue'],
+
     rating: 4,
     numReviews: 12,
   },

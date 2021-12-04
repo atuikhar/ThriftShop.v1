@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom'
-import Error from 'components/Error/Error'
+import Message from 'components/Message/Message'
 
 import {
   Button,
@@ -35,17 +35,23 @@ const CartScreen = () => {
 
   const productId = params.id
 
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  const qty = location.search ? Number(location.search.split('=')[1][0]) : 1
+
+  const sizes = location.search
+    ? location.search.split('=')[2].split('?')[0]
+    : 30
+
+  const color = location.search ? location.search.split('=')[3] : 30
 
   const dispatch = useDispatch()
 
   const cart = useSelector((state) => state.cart)
 
   const { cartItems } = cart
-
+  console.log(cartItems)
   useEffect(() => {
-    dispatch(addToCart(productId, qty))
-  }, [dispatch, productId, qty])
+    dispatch(addToCart(productId, qty, color, sizes))
+  }, [dispatch, productId, qty, color, sizes])
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
@@ -58,7 +64,7 @@ const CartScreen = () => {
     <>
       <h1>Cart</h1>
       {cartItems.length === 0 ? (
-        <Error type="warning" message="Cart Empty" />
+        <Message type="warning" message="Cart Empty" />
       ) : (
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
@@ -97,6 +103,45 @@ const CartScreen = () => {
                                     </MenuItem>
                                   )
                                 )}
+                              </Select>
+                            </FormControl>
+                            <FormControl>
+                              <InputLabel>Color</InputLabel>
+                              <Select
+                                value={item.color}
+                                label="color"
+                                onChange={(e) =>
+                                  dispatch(
+                                    addToCart(item.product, e.target.value)
+                                  )
+                                }
+                              >
+                                {item.colorWay.map((x) => (
+                                  <MenuItem key={x} value={x}>
+                                    {x}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            </FormControl>
+                            <FormControl>
+                              <InputLabel>Size</InputLabel>
+                              <Select
+                                value={item.sizes}
+                                label="size"
+                                onChange={(e) =>
+                                  dispatch(
+                                    addToCart(
+                                      item.product,
+                                      Number(e.target.value)
+                                    )
+                                  )
+                                }
+                              >
+                                {item.size.map((x) => (
+                                  <MenuItem key={x} value={x}>
+                                    {x}
+                                  </MenuItem>
+                                ))}
                               </Select>
                             </FormControl>
                           </Form>

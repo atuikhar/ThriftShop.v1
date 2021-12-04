@@ -5,7 +5,7 @@ import Product from 'components/Product/Product'
 import { listProducts } from 'actions/productActions'
 
 import Loader from 'components/Loader/Loader'
-import Error from 'components/Error/Error'
+import Message from 'components/Message/Message'
 import { Container } from '@mui/material'
 
 const HomePage = () => {
@@ -24,7 +24,7 @@ const HomePage = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Error error={error} type="error" />
+        <Message error={error} type="error" />
       ) : (
         <GridContainer>
           {products.map((product) => (

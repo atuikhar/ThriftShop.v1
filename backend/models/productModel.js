@@ -59,6 +59,15 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    size: {
+      type: Array,
+      required: true,
+      default: 0,
+    },
+    colorWay: {
+      type: Array,
+      required: true,
+    },
   },
   {
     timestamps: true,

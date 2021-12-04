@@ -10,7 +10,7 @@ export const Rating = ({ value, text, color }) => {
       {value >= 4 ? <BsStarFill /> : value >= 3.5 ? <BsStarHalf /> : <BsStar />}
       {value >= 5 ? <BsStarFill /> : value >= 4.5 ? <BsStarHalf /> : <BsStar />}
       <Wrapper>
-        <Text>({text && text})</Text>
+        <Text>{text && text}</Text>
       </Wrapper>
     </Wrapper>
   )

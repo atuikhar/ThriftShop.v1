@@ -64,12 +64,12 @@ export default function NavBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/profile">
+        <Link to="/login">
           <Text color="#1f2430">Profile</Text>
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/account">
+        <Link to="/login">
           <Text color="#1f2430">Account</Text>
         </Link>
       </MenuItem>

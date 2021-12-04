@@ -2,14 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Rating } from 'components/Rating/Rating'
-import { Wrapper, CardImage } from './ProductDetailsStyles'
 import {
-  Typography,
+  Wrapper,
+  CardImage,
+  Cell,
+  Tab,
+  WrapperButton,
+  Text,
+  Title,
+  Body,
+} from './ProductDetailsStyles'
+import {
   Button,
   Grid,
-  Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableRow,
   FormControl,
@@ -22,13 +28,15 @@ import {
 import { listProductDetails } from 'actions/productActions'
 
 import Loader from 'components/Loader/Loader'
-import Error from 'components/Error/Error'
+import Message from 'components/Message/Message'
 
 const ProductDetail = () => {
   const params = useParams()
   const navigate = useNavigate()
 
   const [qty, setQty] = useState(0)
+  const [sizes, setSize] = useState(0)
+  const [color, setColorWay] = useState(0)
 
   const dispatch = useDispatch()
 
@@ -41,7 +49,7 @@ const ProductDetail = () => {
   }, [params, dispatch])
 
   const addToCart = () => {
-    navigate(`/cart/${params.id}?qty=${qty}`)
+    navigate(`/cart/${params.id}?qty=${qty}?colorWay=${color}?sizes=${sizes}`)
   }
 
   return (
@@ -49,58 +57,103 @@ const ProductDetail = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Error />
+        <Message type="warning" error={error} />
       ) : (
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} md={5}>
             <CardImage src={product.image} alt={product.name} />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography gutterBottom variant="h3" component="div">
-              {product.name}
-            </Typography>
-            <Typography variant="body1" color="text.secondary">
-              {product.description}
-            </Typography>
+          <Grid item xs={12} md={4}>
+            <Button variant="contained">
+              <Text>&#x20B9; {product.price}</Text>
+            </Button>
+            <Title>{product.name}</Title>
+            <Body>{product.description}</Body>
 
             <TableContainer>
-              <Table sx={{ minWidth: 100 }} aria-label="caption table">
+              <Tab>
                 <TableBody>
                   <TableRow>
-                    <TableCell component="th" scope="row"></TableCell>
-                    <TableCell align="right">
-                      <Typography variant="h4">
+                    <Cell component="th" scope="row">
+                      {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                    </Cell>
+                    <Cell align="right">
+                      <Text>
                         <Rating
                           value={product.rating}
                           text={`${product.numReviews} reviews`}
                         />
-                      </Typography>
-                    </TableCell>
+                      </Text>
+                    </Cell>
                   </TableRow>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      <Typography variant="h5">Price :</Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography variant="h5">Rs. {product.price}</Typography>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      <Typography variant="h5">Stock :</Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography variant="h5">
-                        {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
+                </TableBody>
+              </Tab>
+            </TableContainer>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <TableContainer>
+              <Tab>
+                <TableBody>
+                  {product.countInStock > 0 && product.size && (
+                    <TableRow>
+                      <Cell component="th" scope="row">
+                        <Text>Size :</Text>
+                      </Cell>
+                      <Cell align="right">
+                        <Box sx={{ minWidth: 50 }}>
+                          <FormControl>
+                            <InputLabel id="sizeSelect">Size</InputLabel>
+                            <Select
+                              labelId="sizeSelect"
+                              id="size"
+                              value={sizes}
+                              label="Size"
+                              onChange={(e) => setSize(e.target.value)}
+                            >
+                              {product.size.map((x) => (
+                                <MenuItem key={x} value={x}>
+                                  {x}
+                                </MenuItem>
+                              ))}
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </Cell>
+                    </TableRow>
+                  )}
+                  {product.countInStock > 0 && product.colorWay && (
+                    <TableRow>
+                      <Cell component="th" scope="row">
+                        <Text>ColorWay :</Text>
+                      </Cell>
+                      <Cell align="right">
+                        <Box sx={{ minWidth: 50 }}>
+                          <FormControl>
+                            <InputLabel id="colorWay">Color</InputLabel>
+                            <Select
+                              labelId="colorWay"
+                              id="color"
+                              value={color}
+                              label="ColorWay"
+                              onChange={(e) => setColorWay(e.target.value)}
+                            >
+                              {product.colorWay.map((x) => (
+                                <MenuItem key={x} value={x}>
+                                  {x}
+                                </MenuItem>
+                              ))}
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </Cell>
+                    </TableRow>
+                  )}
                   {product.countInStock > 0 && (
                     <TableRow>
-                      <TableCell component="th" scope="row">
-                        <Typography variant="h5">Qty :</Typography>
-                      </TableCell>
-                      <TableCell align="right">
+                      <Cell component="th" scope="row">
+                        <Text>Qty :</Text>
+                      </Cell>
+                      <Cell align="right">
                         <Box sx={{ minWidth: 50 }}>
                           <FormControl>
                             <InputLabel id="qtyCount">Qty</InputLabel>
@@ -121,24 +174,23 @@ const ProductDetail = () => {
                             </Select>
                           </FormControl>
                         </Box>
-                      </TableCell>
+                      </Cell>
                     </TableRow>
                   )}
-                  <TableRow>
-                    <TableCell component="th" scope="row"></TableCell>
-                    <TableCell align="right">
-                      <Button
-                        onClick={addToCart}
-                        variant="contained"
-                        disabled={product.countInStock === 0}
-                      >
-                        Add to Cart
-                      </Button>
-                    </TableCell>
-                  </TableRow>
                 </TableBody>
-              </Table>
+              </Tab>
             </TableContainer>
+            <WrapperButton>
+              <Button
+                onClick={addToCart}
+                variant="contained"
+                disabled={product.countInStock === 0}
+              >
+                <Text>
+                  {product.countInStock > 0 ? 'Add To Cart' : 'Out Of Stock'}
+                </Text>
+              </Button>
+            </WrapperButton>
           </Grid>
           {/* <Grid item xs={12} md={4}></Grid>
            <Grid item xs={12} md={8}></Grid> */}

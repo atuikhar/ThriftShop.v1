@@ -5,7 +5,7 @@ const GlobalTheme = {
   },
   colors: {
     primary: '#1976d2',
-    backgrounddark: '#0F1624',
+    backgrounddark: '#373737',
     background: 'rgb(251, 250, 249, 1)',
     light: '#fbfaf9',
   },
