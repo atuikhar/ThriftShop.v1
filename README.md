@@ -1,2 +1,2 @@
-# ThriftShop.v1
+# ThriftShop
 Online Shopping Site
