@@ -50,3 +50,6 @@ export const Body = styled(Typography)`
   font-size: 11px;
   color: ${(props) => props.theme.colors.backgrounddark};
 `
+export const RatingContainer = styled(Container)`
+  font-size: 15px;
+`

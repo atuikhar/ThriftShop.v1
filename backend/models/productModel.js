@@ -59,7 +59,7 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    size: {
+    sizes: {
       type: Array,
       required: true,
       default: 0,

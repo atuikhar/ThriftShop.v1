@@ -11,6 +11,7 @@ import {
   Text,
   Title,
   Body,
+  RatingContainer,
 } from './ProductDetailsStyles'
 import {
   Button,
@@ -35,7 +36,7 @@ const ProductDetail = () => {
   const navigate = useNavigate()
 
   const [qty, setQty] = useState(0)
-  const [sizes, setSize] = useState(0)
+  const [size, setSize] = useState(0)
   const [color, setColorWay] = useState(0)
 
   const dispatch = useDispatch()
@@ -49,7 +50,7 @@ const ProductDetail = () => {
   }, [params, dispatch])
 
   const addToCart = () => {
-    navigate(`/cart/${params.id}?qty=${qty}?colorWay=${color}?sizes=${sizes}`)
+    navigate(`/cart/${params.id}?qty=${qty}?colorWay=${color}?size=${size}`)
   }
 
   return (
@@ -78,12 +79,12 @@ const ProductDetail = () => {
                       {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                     </Cell>
                     <Cell align="right">
-                      <Text>
+                      <RatingContainer>
                         <Rating
                           value={product.rating}
                           text={`${product.numReviews} reviews`}
                         />
-                      </Text>
+                      </RatingContainer>
                     </Cell>
                   </TableRow>
                 </TableBody>
@@ -94,7 +95,7 @@ const ProductDetail = () => {
             <TableContainer>
               <Tab>
                 <TableBody>
-                  {product.countInStock > 0 && product.size && (
+                  {product.countInStock > 0 && product.sizes && (
                     <TableRow>
                       <Cell component="th" scope="row">
                         <Text>Size :</Text>
@@ -106,11 +107,11 @@ const ProductDetail = () => {
                             <Select
                               labelId="sizeSelect"
                               id="size"
-                              value={sizes}
+                              value={size}
                               label="Size"
                               onChange={(e) => setSize(e.target.value)}
                             >
-                              {product.size.map((x) => (
+                              {product.sizes.map((x) => (
                                 <MenuItem key={x} value={x}>
                                   {x}
                                 </MenuItem>

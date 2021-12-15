@@ -11,6 +11,7 @@ import {
   Select,
   MenuItem,
   Table,
+  TableBody,
   TableRow,
   TableCell,
   Container,
@@ -37,7 +38,7 @@ const CartScreen = () => {
 
   const qty = location.search ? Number(location.search.split('=')[1][0]) : 1
 
-  const sizes = location.search
+  const size = location.search
     ? location.search.split('=')[2].split('?')[0]
     : 30
 
@@ -48,10 +49,9 @@ const CartScreen = () => {
   const cart = useSelector((state) => state.cart)
 
   const { cartItems } = cart
-  console.log(cartItems)
   useEffect(() => {
-    dispatch(addToCart(productId, qty, color, sizes))
-  }, [dispatch, productId, qty, color, sizes])
+    dispatch(addToCart(productId, qty, color, size))
+  }, [dispatch, productId, qty, color, size])
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
@@ -67,21 +67,26 @@ const CartScreen = () => {
         <Message type="warning" message="Cart Empty" />
       ) : (
         <Grid container spacing={2}>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={9}>
             <GridContainer>
               {cartItems.map((item) => (
                 <Wrapper key={item.product}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                  <Grid container spacing={1}>
+                    <Grid item xs={5}>
                       <Link to={`/product/${item.product}`}>
                         <Img alt={item.name} src={item.image} />
                       </Link>
                     </Grid>
-                    <Grid item xs={6} sm container>
-                      <Grid item xs container direction="column" spacing={2}>
-                        <Grid item xs>
+                    <Grid item xs={7} container>
+                      <Grid item xs container direction="column">
+                        <Grid item lg={12}>
                           <Title>{item.name}</Title>
-                          <Form>
+                          <Form
+                            sx={{
+                              display: 'flex',
+                              justifyContent: 'space-around',
+                            }}
+                          >
                             <FormControl>
                               <InputLabel>Qty</InputLabel>
                               <Select
@@ -89,10 +94,7 @@ const CartScreen = () => {
                                 label="qty"
                                 onChange={(e) =>
                                   dispatch(
-                                    addToCart(
-                                      item.product,
-                                      Number(e.target.value)
-                                    )
+                                    addToCart(item.product, e.target.value)
                                   )
                                 }
                               >
@@ -108,11 +110,13 @@ const CartScreen = () => {
                             <FormControl>
                               <InputLabel>Color</InputLabel>
                               <Select
+                                labelId="colorWay"
+                                id="color"
                                 value={item.color}
-                                label="color"
+                                label="ColorWay"
                                 onChange={(e) =>
                                   dispatch(
-                                    addToCart(item.product, e.target.value)
+                                    addToCart(item.color, e.target.value)
                                   )
                                 }
                               >
@@ -126,18 +130,15 @@ const CartScreen = () => {
                             <FormControl>
                               <InputLabel>Size</InputLabel>
                               <Select
-                                value={item.sizes}
-                                label="size"
+                                labelId="sizeSelect"
+                                id="size"
+                                value={item.size}
+                                label="Size"
                                 onChange={(e) =>
-                                  dispatch(
-                                    addToCart(
-                                      item.product,
-                                      Number(e.target.value)
-                                    )
-                                  )
+                                  dispatch(addToCart(item.size, e.target.value))
                                 }
                               >
-                                {item.size.map((x) => (
+                                {item.sizes.map((x) => (
                                   <MenuItem key={x} value={x}>
                                     {x}
                                   </MenuItem>
@@ -163,32 +164,34 @@ const CartScreen = () => {
               ))}
             </GridContainer>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Subtotal>
               <Table sx={{ minWidth: 200 }}>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Total>Items In Cart :</Total>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Total>
-                      ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                    </Total>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    <Total>Total :</Total>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Total>
-                      Rs.{' '}
-                      {cartItems
-                        .reduce((acc, item) => acc + item.qty * item.price, 0)
-                        .toFixed(2)}
-                    </Total>
-                  </TableCell>
-                </TableRow>
+                <TableBody>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      <Total>CartItems :</Total>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Total>
+                        ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                      </Total>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      <Total>Total :</Total>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Total>
+                        Rs.{' '}
+                        {cartItems
+                          .reduce((acc, item) => acc + item.qty * item.price, 0)
+                          .toFixed(2)}
+                      </Total>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
               </Table>
             </Subtotal>
             <Container

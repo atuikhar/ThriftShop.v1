@@ -18,7 +18,7 @@ export const Img = styled.img`
 
 export const ButtonContainer = styled(Grid)`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `
 
 export const Title = styled(Typography)`
@@ -43,11 +43,11 @@ export const GridContainer = styled(Container)`
 `
 
 export const Wrapper = styled(Paper)`
-  padding: 10px;
-  margin: 10px;
+  padding: 5px;
+  margin: 5px;
 `
 export const Form = styled(Box)`
-  padding: 20px;
+  padding: 10px 0px 30px 0px;
 `
 export const Remove = styled(DeleteIcon)`
   cursor: pointer;
